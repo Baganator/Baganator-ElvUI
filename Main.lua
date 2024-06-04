@@ -41,6 +41,19 @@ local skinners = {
   TrimScrollBar = function(frame)
     S:HandleTrimScrollBar(frame)
   end,
+  CheckBox = function(frame)
+    S:HandleCheckBox(frame)
+  end,
+  Slider = function(frame)
+    S:HandleSliderFrame(frame)
+  end,
+  InsetFrame = function(frame)
+    if frame.NineSlice then
+      frame.NineSlice:SetTemplate("Transparent")
+    else
+      S:HandleInsetFrame(frame)
+    end
+  end,
 }
 
 local function SkinFrame(details)
