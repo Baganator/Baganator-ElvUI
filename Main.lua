@@ -5,6 +5,10 @@ local skinners = {
   ItemButton = function(frame)
     S:HandleItemButton(frame, true)
     S:HandleIconBorder(frame.IconBorder)
+    -- Fix search overlay being removed by ElvUI in classic
+    if Baganator.Constants.IsClassic then
+      frame.searchOverlay:SetColorTexture(0, 0, 0, 0.8)
+    end
   end,
   IconButton = function(frame)
     S:HandleButton(frame)
