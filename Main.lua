@@ -6,6 +6,9 @@ local skinners = {
     S:HandleItemButton(frame, true)
     S:HandleIconBorder(frame.IconBorder)
   end,
+  IconButton = function(frame)
+    S:HandleButton(frame)
+  end,
   Button = function(frame)
     S:HandleButton(frame)
   end,
