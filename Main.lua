@@ -2,11 +2,14 @@ local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule("Skins")
 
 hooksecurefunc("SetItemButtonTexture", function(frame)
-  (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
+  if frame.bgrElvUISkin then
+    (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
+  end
 end)
 
 local skinners = {
   ItemButton = function(frame)
+    frame.bgrElvUISkin = true
     S:HandleItemButton(frame, true)
     S:HandleIconBorder(frame.IconBorder)
     if frame.SetItemButtonTexture then
