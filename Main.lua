@@ -37,6 +37,9 @@ local skinners = {
   TabButton = function(frame)
     S:HandleTab(frame)
   end,
+  TopTabButton = function(frame)
+    S:HandleTab(frame)
+  end,
   SideTabButton = function(frame)
     frame.Background:Hide()
 
