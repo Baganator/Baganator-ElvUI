@@ -1,10 +1,19 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule("Skins")
 
+hooksecurefunc("SetItemButtonTexture", function(frame)
+  (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
+end)
+
 local skinners = {
   ItemButton = function(frame)
     S:HandleItemButton(frame, true)
     S:HandleIconBorder(frame.IconBorder)
+    if frame.SetItemButtonTexture then
+      hooksecurefunc(frame, "SetItemButtonTexture", function()
+        frame.icon:SetTexCoord(unpack(E.TexCoords))
+      end)
+    end
     -- Fix search overlay being removed by ElvUI in classic
     if Baganator.Constants.IsClassic then
       frame.searchOverlay:SetColorTexture(0, 0, 0, 0.8)
