@@ -1,12 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule("Skins")
 
-hooksecurefunc("SetItemButtonTexture", function(frame)
-  if frame.bgrElvUISkin then
-    (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
-  end
-end)
-
 local skinners = {
   ItemButton = function(frame)
     frame.bgrElvUISkin = true
@@ -77,6 +71,16 @@ local skinners = {
     end
   end,
 }
+
+if C_AddOns.IsAddOnLoaded("Masque") then
+  skinners.ItemButton = function() end
+else
+  hooksecurefunc("SetItemButtonTexture", function(frame)
+    if frame.bgrElvUISkin then
+      (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
+    end
+  end)
+end
 
 local function SkinFrame(details)
   local func = skinners[details.regionType]
