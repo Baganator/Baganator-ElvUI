@@ -1,5 +1,14 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule("Skins")
+local LSM = E.Libs.LSM
+
+local function ConvertTags(tags)
+  local res = {}
+  for _, tag in ipairs(tags) do
+    res[tag] = true
+  end
+  return res
+end
 
 local skinners = {
   ItemButton = function(frame)
@@ -70,6 +79,11 @@ local skinners = {
       S:HandleInsetFrame(frame)
     end
   end,
+  CornerWidget = function(frame, tags)
+    if frame:IsObjectType("FontString") then
+      frame:FontTemplate(LSM:Fetch('font', E.db.bags.countFont), Baganator.Config.Get(Baganator.Config.Options.ICON_TEXT_FONT_SIZE), E.db.bags.countFontOutline)
+    end
+  end
 }
 
 if C_AddOns.IsAddOnLoaded("Masque") then
@@ -85,7 +99,7 @@ end
 local function SkinFrame(details)
   local func = skinners[details.regionType]
   if func then
-    func(details.region)
+    func(details.region, details.tags and ConvertTags(details.tags) or {})
   end
 end
 
