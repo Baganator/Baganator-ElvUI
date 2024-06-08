@@ -86,8 +86,6 @@ local function SkinFrame(details)
   local func = skinners[details.regionType]
   if func then
     func(details.region)
-  else
-    print("missing", details.regionType)
   end
 end
 
