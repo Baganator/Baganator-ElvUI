@@ -20,6 +20,9 @@ local skinners = {
         frame.icon:SetTexCoord(unpack(E.TexCoords))
       end)
     end
+    if frame.JunkIcon then
+      frame.JunkIcon:SetAtlas('bags-junkcoin', true)
+    end
     -- Fix search overlay being removed by ElvUI in classic
     if Baganator.Constants.IsClassic then
       frame.searchOverlay:SetColorTexture(0, 0, 0, 0.8)
