@@ -83,7 +83,25 @@ local skinners = {
     if frame:IsObjectType("FontString") then
       frame:FontTemplate(LSM:Fetch('font', E.db.bags.countFont), Baganator.Config.Get(Baganator.Config.Options.ICON_TEXT_FONT_SIZE), E.db.bags.countFontOutline)
     end
-  end
+  end,
+  DropDownWithPopout = function(button)
+    button.HighlightTexture:SetAlpha(0)
+    button.NormalTexture:SetAlpha(0)
+
+    local r, g, b, a = unpack(E.media.backdropfadecolor)
+    button.Popout:StripTextures()
+    button.Popout:SetTemplate('Transparent')
+    button.Popout:SetBackdropColor(r, g, b, max(a, 0.9))
+
+    local expandArrow = button:CreateTexture(nil, "ARTWORK")
+    expandArrow:SetTexture(E.Media.Textures.ArrowUp)
+    expandArrow:SetRotation(S.ArrowRotation.down)
+    expandArrow:Size(15)
+    expandArrow:SetPoint("RIGHT", -10, 0)
+
+    S:HandleButton(button, nil, nil, nil, true)
+    button.backdrop:SetInside(nil, 4, 4)
+  end,
 }
 
 if C_AddOns.IsAddOnLoaded("Masque") then
