@@ -108,7 +108,11 @@ local skinners = {
 }
 
 if C_AddOns.IsAddOnLoaded("Masque") then
-  skinners.ItemButton = function() end
+  local Masque = LibStub("Masque", true)
+  local masqueGroup = Masque:Group("Baganator", "Bag")
+  if not masqueGroup.db.Disabled then
+    skinners.ItemButton = function() end
+  end
 else
   hooksecurefunc("SetItemButtonTexture", function(frame)
     if frame.bgrElvUISkin then
