@@ -130,7 +130,7 @@ end
 
 Baganator.API.Skins.RegisterListener(SkinFrame)
 
-Baganator.Config.Set(Baganator.Config.Options.EMPTY_SLOT_BACKGROUND, true)
+BAGANATOR_CONFIG["empty_slot_background"] = true
 
 for _, details in ipairs(Baganator.API.Skins.GetAllFrames()) do
   SkinFrame(details)
