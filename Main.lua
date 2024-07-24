@@ -84,7 +84,7 @@ local skinners = {
   end,
   CornerWidget = function(frame, tags)
     if frame:IsObjectType("FontString") and BAGANATOR_ELVUI_USE_BAG_FONT then
-      frame:FontTemplate(LSM:Fetch('font', E.db.bags.countFont), Baganator.Config.Get(Baganator.Config.Options.ICON_TEXT_FONT_SIZE), E.db.bags.countFontOutline)
+      frame:FontTemplate(LSM:Fetch('font', E.db.bags.countFont), BAGANATOR_CONFIG["icon_text_font_size"], E.db.bags.countFontOutline)
     end
   end,
   DropDownWithPopout = function(button)
