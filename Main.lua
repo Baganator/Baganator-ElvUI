@@ -112,8 +112,11 @@ if C_AddOns.IsAddOnLoaded("Masque") then
   local masqueGroup = Masque:Group("Baganator", "Bag")
   if not masqueGroup.db.Disabled then
     skinners.ItemButton = function() end
+  else
+    BAGANATOR_CONFIG["empty_slot_background"] = true
   end
 else
+  BAGANATOR_CONFIG["empty_slot_background"] = true
   hooksecurefunc("SetItemButtonTexture", function(frame)
     if frame.bgrElvUISkin then
       (frame.icon or frame.Icon):SetTexCoord(unpack(E.TexCoords))
@@ -129,8 +132,6 @@ local function SkinFrame(details)
 end
 
 Baganator.API.Skins.RegisterListener(SkinFrame)
-
-BAGANATOR_CONFIG["empty_slot_background"] = true
 
 for _, details in ipairs(Baganator.API.Skins.GetAllFrames()) do
   SkinFrame(details)
