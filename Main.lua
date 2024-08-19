@@ -27,6 +27,10 @@ local skinners = {
     if Baganator.Constants.IsClassic then
       frame.searchOverlay:SetColorTexture(0, 0, 0, 0.8)
     end
+    local cooldown = frame.Cooldown or frame:GetName() and _G[frame:GetName() .. "Cooldown"]
+    if cooldown then
+      E:RegisterCooldown(cooldown)
+    end
   end,
   IconButton = function(frame)
     S:HandleButton(frame)
