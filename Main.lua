@@ -10,6 +10,21 @@ local function ConvertTags(tags)
   return res
 end
 
+local icons = {}
+local frame = CreateFrame("Frame")
+frame:RegisterEvent("UI_SCALE_CHANGED")
+frame:SetScript("OnEvent", function()
+  C_Timer.After(0, function()
+    for _, frame in ipairs(icons) do
+      local c1, c2, c3 = frame.backdrop:GetBackdropBorderColor()
+      frame.backdrop:SetTemplate(nil, true, nil, nil, nil, nil, nil, true)
+      frame.backdrop:SetIgnoreParentScale(true)
+      frame.backdrop:SetScale(UIParent:GetScale())
+      frame.backdrop:SetBackdropBorderColor(c1, c2, c3)
+    end
+  end)
+end)
+
 local skinners = {
   ItemButton = function(frame)
     frame.bgrElvUISkin = true
@@ -31,6 +46,9 @@ local skinners = {
     if cooldown then
       E:RegisterCooldown(cooldown)
     end
+    table.insert(icons, frame)
+    frame.backdrop:SetIgnoreParentScale(true)
+    frame.backdrop:SetScale(UIParent:GetScale())
   end,
   IconButton = function(frame)
     S:HandleButton(frame)
