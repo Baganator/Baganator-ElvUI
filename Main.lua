@@ -127,6 +127,13 @@ local skinners = {
     S:HandleButton(button, nil, nil, nil, true)
     button.backdrop:SetInside(nil, 4, 4)
   end,
+  Divider = function(tex)
+    tex:SetTexture("Interface\\Common\\UI-TooltipDivider-Transparent")
+    tex:SetPoint("TOPLEFT", 0, 0)
+    tex:SetPoint("TOPRIGHT", 0, 0)
+    tex:SetHeight(1)
+    tex:SetColorTexture(1, 0.93, 0.73, 0.45)
+  end,
 }
 
 if C_AddOns.IsAddOnLoaded("Masque") then
