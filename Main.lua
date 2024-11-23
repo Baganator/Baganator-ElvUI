@@ -1,5 +1,6 @@
 local E, L, V, P, G = unpack(ElvUI)
 local S = E:GetModule("Skins")
+local B = E:GetModule('Bags')
 local LSM = E.Libs.LSM
 
 local function ConvertTags(tags)
@@ -45,6 +46,20 @@ local skinners = {
     local cooldown = frame.Cooldown or frame:GetName() and _G[frame:GetName() .. "Cooldown"]
     if cooldown then
       E:RegisterCooldown(cooldown)
+    end
+    if frame.BGRUpdateQuests then
+      local questTexture = frame:GetName() and _G[frame:GetName() .. "IconQuestTexture"] or frame.IconQuestTexture
+      hooksecurefunc(frame, "BGRUpdateQuests", function()
+        if questTexture:IsShown() then
+          local textureID = questTexture:GetTexture()
+          if textureID == 368362 then -- quest border only
+            questTexture:SetTexture(E.Media.Textures.BagQuestIcon)
+          else
+            questTexture:Hide()
+          end
+          frame.IconBorder:SetVertexColor(unpack(B.QuestColors['questStarter']))
+        end
+      end)
     end
     table.insert(icons, frame)
     frame.backdrop:SetIgnoreParentScale(true)
